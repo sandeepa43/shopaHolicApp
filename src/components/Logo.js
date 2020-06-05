@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-//const logoImage = require('../assets/images/eco-logo.png');
+import {Image, TouchableOpacity} from 'react-native';
+const logoImage = require('../assets/images/logo.jpg');
 class Logo extends Component {
   goHome = () => {
     this.props.navigation.navigate('Products');
@@ -8,8 +8,14 @@ class Logo extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.goHome}>
-        {/* <Image source={logoImage} style={{width: 32, height: 32}} /> */}
-        <Text>logo</Text>
+        <Image
+          source={logoImage}
+          style={{
+            width: 20,
+            height: 30,
+            marginLeft: 10,
+          }}
+        />
       </TouchableOpacity>
     );
   }

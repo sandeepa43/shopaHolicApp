@@ -8,11 +8,12 @@ import {fetchProducts} from '../action/productAction';
 import Logo from '../components/Logo';
 import Cart from '../components/Cart';
 import WishList from '../components/WishList';
+import WishListItems from '../components/WishListItems';
 class Products extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerTitle: 'Products',
-      headerLeft: <Logo navigation={navigation} />,
+      headerLeft: <WishListItems navigation={navigation} />,
       headerRight: <Cart navigation={navigation} />,
     };
   };
