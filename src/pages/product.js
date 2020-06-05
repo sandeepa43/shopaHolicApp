@@ -3,9 +3,11 @@ import {View, StyleSheet, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import Product from '../components/Product';
 import {addToCart} from '../action/cartActions';
+import {addToWishList} from '../action/wishListActions';
 import {fetchProducts} from '../action/productAction';
 import Logo from '../components/Logo';
 import Cart from '../components/Cart';
+import WishList from '../components/WishList';
 class Products extends Component {
   static navigationOptions = ({navigation}) => {
     return {
@@ -23,6 +25,9 @@ class Products extends Component {
   addItemsToCart = (product) => {
     this.props.addToCart(product);
   };
+  addItemsToWishList = (product) => {
+    this.props.addToWishList(product);
+  };
   render() {
     const {products, navigation} = this.props;
     return (
@@ -31,11 +36,18 @@ class Products extends Component {
           <FlatList
             data={products}
             renderItem={({item}) => (
-              <Product
-                item={item}
-                addItemsToCart={this.addItemsToCart}
-                product={item}
-              />
+              <View>
+                <Product
+                  item={item}
+                  addItemsToCart={this.addItemsToCart}
+                  product={item}
+                />
+                <WishList
+                  item={item}
+                  addItemsToWishList={this.addItemsToWishList}
+                  product={item}
+                />
+              </View>
             )}
             keyExtractor={(item) => item.id}
             ItemSeparatorComponent={() => (
@@ -56,7 +68,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-const mapStateToProps = (state) => ({
-  products: state.products.items,
-});
-export default connect(mapStateToProps, {addToCart, fetchProducts})(Products);
+const mapStateToProps = (state) => (
+  console.log(state, 'mapstate'),
+  {
+    products: state.products.items,
+  }
+);
+export default connect(mapStateToProps, {
+  addToCart,
+  fetchProducts,
+  addToWishList,
+})(Products);

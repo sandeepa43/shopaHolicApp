@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 export class Cart extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props, 'cartprops');
     this.state = {
       opacity: new Animated.Value(1),
     };
@@ -35,6 +35,7 @@ export class Cart extends Component {
   };
   render() {
     const {cartItems} = this.props;
+
     let animatedStyle = {opacity: this.state.opacity};
     return (
       <Animated.View style={[styles.container, animatedStyle]}>
