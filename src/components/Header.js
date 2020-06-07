@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
-
+import {Text, StyleSheet, View, Button, TouchableOpacity} from 'react-native';
+import {DrawerActions} from 'react-navigation-drawer';
 const Header = (props) => {
   return (
     <View style={styles.backgroundStyle}>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, Button} from 'react-native';
 import {connect} from 'react-redux';
 import Product from '../components/Product';
 import {addToCart} from '../action/cartActions';
@@ -9,6 +9,7 @@ import Logo from '../components/Logo';
 import Cart from '../components/Cart';
 import WishList from '../components/WishList';
 import WishListItems from '../components/WishListItems';
+import {Header} from '../components/Header';
 class Products extends Component {
   static navigationOptions = ({navigation}) => {
     return {

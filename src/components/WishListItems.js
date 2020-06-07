@@ -1,30 +1,25 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Animted} from 'react-native';
 import {connect} from 'react-redux';
-import WishList from './WishList';
 export class WishListItems extends Component {
   constructor(props) {
     super(props);
     console.log(props, 'cartprops');
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.WishListItems !== this.props.WishListItems) {
-      this.startAnimation();
-    }
-  }
 
   onPress = () => {
-    this.props.navigation.navigate('Checkout');
+    this.props.navigation.navigate('WishList');
   };
   render() {
     const {WishListItems} = this.props;
-    console.log(WishListItems, 'wishlistitems');
+    console.log(this.props, 'WishList');
 
     return (
       <View>
+        <Button onPress={() => this.props.navigation.goBack()} title={'go'} />
         <TouchableOpacity onPress={this.onPress}>
           <Text style={{fontSize: 14, fontWeight: 'bold', margin: 10}}>
-            Your wish list: {WishListItems} items
+            Your wish list: {WishListItems.length} items
           </Text>
         </TouchableOpacity>
       </View>
@@ -32,7 +27,7 @@ export class WishListItems extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  WishListItems: state.wishList.cart,
+  WishListItems: state.wishList.wishList,
 });
 
 export default connect(mapStateToProps)(WishListItems);
