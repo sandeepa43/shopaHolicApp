@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import themes from '../styles/theme';
+import {connect} from 'react-redux';
+import {addToWishList} from '../action/wishListActions';
+import WishList from '../components/WishList';
 class Product extends Component {
   addToCart = () => {
     this.props.addItemsToCart(this.props.item);
+  };
+  addItemsToWishList = (product) => {
+    this.props.addToWishList(product);
   };
   render() {
     const {product} = this.props;
@@ -14,9 +20,16 @@ class Product extends Component {
           <Text>{product.title}</Text>
           <Text>${product.price.toFixed(2)}</Text>
           <Text>{product.author}</Text>
-          <TouchableOpacity onPress={this.addToCart} style={styles.addBtn}>
-            <Text style={styles.text}>Add to cart</Text>
-          </TouchableOpacity>
+          <View style={styles.viewStyle}>
+            <TouchableOpacity onPress={this.addToCart} style={styles.addBtn}>
+              <Text style={styles.text}>Add to cart</Text>
+            </TouchableOpacity>
+            <WishList
+              item={product}
+              addItemsToWishList={this.addItemsToWishList}
+              product={product}
+            />
+          </View>
         </View>
       </View>
     );
@@ -45,5 +58,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     padding: 10,
   },
+  viewStyle: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
 });
-export default Product;
+export default connect(null, {addToWishList})(Product);

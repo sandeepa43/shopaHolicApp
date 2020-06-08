@@ -46,11 +46,11 @@ class Products extends Component {
                   addItemsToCart={this.addItemsToCart}
                   product={item}
                 />
-                <WishList
+                {/* <WishList
                   item={item}
                   addItemsToWishList={this.addItemsToWishList}
                   product={item}
-                />
+                /> */}
               </View>
             )}
             keyExtractor={(item) => item.id}

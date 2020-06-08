@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import {connect} from 'react-redux';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {filterProducts, sortProducts} from '../action/productAction';
 class Filter extends Component {
   render() {
@@ -9,10 +9,13 @@ class Filter extends Component {
       <View className="inline-row">
         {console.log(this.props)}
         <View>
-          <Text>{`${this.props.filteredProducts.length} products found.`}</Text>
+          <Text
+            style={
+              styles.textStyle
+            }>{`${this.props.filteredProducts.length} products found.`}</Text>
         </View>
         <View>
-          <Text>Filter Price </Text>
+          <Text style={styles.filterStyle}>Filter Price </Text>
 
           <RNPickerSelect
             onValueChange={(event) =>
@@ -25,7 +28,7 @@ class Filter extends Component {
           />
         </View>
         <View className="col-md-4">
-          <Text> Filter Size</Text>
+          <Text style={styles.filterStyle}> Filter Size</Text>
           <RNPickerSelect
             onValueChange={(event) =>
               this.props.filterProducts(this.props.products, event)
@@ -43,6 +46,22 @@ class Filter extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  textStyle: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#ab0c61',
+    fontWeight: 'bold',
+  },
+  filterStyle: {
+    color: '#ab0c61',
+    fontSize: 16,
+    fontWeight: 'bold',
+    margin: 5,
+  },
+});
+
 const mapStateToProps = (state) => ({
   products: state.products.items,
   filteredProducts: state.products.filteredItems,

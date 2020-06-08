@@ -1,5 +1,8 @@
 import {ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART} from './types';
-export const addToCart = (item) => (dispatch) => {
+import AsyncStorage from 'react-native';
+export const addToCart = (item, product) => (dispatch) => {
+  console.log(item, 'items');
+
   dispatch({
     type: ADD_TO_CART,
     payload: item,

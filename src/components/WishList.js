@@ -23,23 +23,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     margin: 10,
-    backgroundColor: themes.BACKGROUND_COLOR,
+    backgroundColor: '#ab0c61',
   },
-  productDes: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-  },
+
   addBtn: {
     borderRadius: 20,
     margin: 10,
     padding: 8,
-    backgroundColor: themes.BUTTON_COLOR,
+    backgroundColor: '#ab0c61',
   },
   text: {
     color: '#fff',
     fontSize: 16,
+    textAlign: 'center',
     padding: 10,
+    fontWeight: 'bold',
   },
 });
 export default WishList;
