@@ -10,6 +10,7 @@ import Cart from '../components/Cart';
 import WishList from '../components/WishList';
 import WishListItems from '../components/WishListItems';
 import {Header} from '../components/Header';
+import Filter from '../components/filter';
 class Products extends Component {
   static navigationOptions = ({navigation}) => {
     return {
@@ -34,6 +35,7 @@ class Products extends Component {
     const {products, navigation} = this.props;
     return (
       <View style={styles.container}>
+        <Filter />
         <View style={styles.body}>
           <FlatList
             data={products}
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => (
   console.log(state, 'mapstate'),
   {
-    products: state.products.items,
+    products: state.products.filteredItems,
   }
 );
 export default connect(mapStateToProps, {

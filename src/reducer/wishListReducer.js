@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         wishList: [action.payload, ...state.wishList],
-        total: state.total + action.payload.cost,
+        total: state.total + action.payload.price,
       };
 
     case REMOVE_FROM_WISHLIST:
@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
         wishList: state.wishList.filter(
           (item, i) => i !== action.payload.index,
         ),
-        total: state.total - action.payload.item.cost,
+        total: state.total - action.payload.item.price,
       };
     default:
       return state;

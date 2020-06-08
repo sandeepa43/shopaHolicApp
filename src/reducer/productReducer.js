@@ -1,6 +1,13 @@
-import {FETCH_PRODUCTS} from '../action/types';
+import {
+  FETCH_PRODUCTS,
+  FILTER_PRODUCTS_BY_SIZE,
+  ORDER_PRODUCTS_BY_PRICE,
+} from '../action/types';
 const initialState = {
   items: [],
+  filteredItems: [],
+  size: '',
+  sort: '',
 };
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -8,7 +15,21 @@ export default function (state = initialState, action) {
       return {
         ...state,
         items: action.payload,
+        filteredItems: action.payload,
       };
+    case FILTER_PRODUCTS_BY_SIZE:
+      return {
+        ...state,
+        filteredItems: action.payload.items,
+        size: action.payload.size,
+      };
+    case ORDER_PRODUCTS_BY_PRICE:
+      return {
+        ...state,
+        filteredItems: action.payload.items,
+        sort: action.payload.sort,
+      };
+
     default:
       return state;
   }

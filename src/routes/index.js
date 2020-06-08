@@ -10,26 +10,7 @@ import * as React from 'react';
 import Header from '../components/Header';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-
-// const Route = createStackNavigator(
-//   {
-//     Products: {screen: Products},
-//     Checkout: {screen: Checkout},
-//     Receipt: {screen: Receipt},
-//     WishList: {screen: CheckWishList},
-//   },
-//   {
-//     navigationOptions: {
-//       headerStyle: {
-//         backgroundColor: themes.BACKGROUND_COLOR,
-//         paddingHorizontal: 10,
-//       },
-//       headerTintColor: '#fff',
-//     },
-//   },
-// );
-
-// export default createAppContainer(Route);
+import Filter from '../components/filter';
 
 function HomeScreen({navigation}) {
   return <Products />;
@@ -53,6 +34,7 @@ export default class extends React.Component {
 
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={HomeScreen} />
+          {/* <Drawer.Screen name="Home" component={Filter} /> */}
           <Drawer.Screen name="Cart" component={CheckoutScreen} />
           <Drawer.Screen name="WishList" component={CheckWishListScreen} />
         </Drawer.Navigator>

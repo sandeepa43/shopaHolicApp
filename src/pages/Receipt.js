@@ -17,7 +17,7 @@ class Receipt extends Component {
     let total = 0;
     const {items} = this.props;
     for (let i = 0; i < items.length; i++) {
-      total = total + items[i].cost;
+      total = total + items[i].price;
     }
     return <Text style={styles.totText}>Total: ${total.toFixed(2)}</Text>;
   }

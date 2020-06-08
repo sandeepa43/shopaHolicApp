@@ -1,52 +1,43 @@
 import React, {Component} from 'react';
+import RNPickerSelect from 'react-native-picker-select';
 import {connect} from 'react-redux';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {filterProducts, sortProducts} from '../action/productAction';
 class Filter extends Component {
   render() {
     return (
       <View className="inline-row">
-        <View>{`${this.props.filteredProducts.length} products found.`}</View>
-        <View className="col-md-4">
-          <label>
-            Order by
-            <select
-              className="form-control"
-              value={this.props.sort}
-              onChange={(event) => {
-                this.props.sortProducts(
-                  this.props.filteredProducts,
-                  event.target.value,
-                );
-              }}>
-              <option value="">Select</option>
-              <option value="lowestprice">Lowest to highest</option>
-              <option value="highestprice">Highest to lowest</option>
-            </select>
-          </label>
+        {console.log(this.props)}
+        <View>
+          <Text>{`${this.props.filteredProducts.length} products found.`}</Text>
+        </View>
+        <View>
+          <Text>Filter Price </Text>
+
+          <RNPickerSelect
+            onValueChange={(event) =>
+              this.props.sortProducts(this.props.filteredProducts, event)
+            }
+            items={[
+              {label: 'Highest to Lowest', value: 'highestprice'},
+              {label: 'Lowest to Highest', value: 'lowestprice'},
+            ]}
+          />
         </View>
         <View className="col-md-4">
-          <label>
-            {' '}
-            Filter Size
-            <select
-              className="form-control"
-              value={this.props.size}
-              onChange={(event) => {
-                this.props.filterProducts(
-                  this.props.products,
-                  event.target.value,
-                );
-              }}>
-              <option value="">ALL</option>
-              <option value="x">XS</option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-              <option value="xl">XL</option>
-              <option value="xxl">XXL</option>
-            </select>
-          </label>
+          <Text> Filter Size</Text>
+          <RNPickerSelect
+            onValueChange={(event) =>
+              this.props.filterProducts(this.props.products, event)
+            }
+            items={[
+              {label: 'XS', value: 'XS'},
+              {label: 'S', value: 'S'},
+              {label: 'M', value: 'M'},
+              {label: 'L', value: 'L'},
+              {label: 'XL', value: 'XL'},
+            ]}
+          />
         </View>
       </View>
     );
@@ -55,7 +46,7 @@ class Filter extends Component {
 const mapStateToProps = (state) => ({
   products: state.products.items,
   filteredProducts: state.products.filteredItems,
-  size: state.products.size,
   sort: state.products.sort,
+  size: state.products.size,
 });
 export default connect(mapStateToProps, {filterProducts, sortProducts})(Filter);
